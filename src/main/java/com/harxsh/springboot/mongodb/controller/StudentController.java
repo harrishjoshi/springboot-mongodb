@@ -3,6 +3,7 @@ package com.harxsh.springboot.mongodb.controller;
 import com.harxsh.springboot.mongodb.collection.Student;
 import com.harxsh.springboot.mongodb.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,5 +55,15 @@ public class StudentController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return studentService.search(firstName, lastName, minAge, maxAge, city, pageable);
+    }
+
+    @GetMapping("youngest-student")
+    public List<Document> getYoungestStudent() {
+        return studentService.getYoungestStudentByCity();
+    }
+
+    @GetMapping("student-by-city")
+    public List<Document> getStudentByCity() {
+        return studentService.getStudentByCity();
     }
 }
