@@ -1,6 +1,7 @@
 package com.harxsh.springboot.mongodb.service;
 
 import com.harxsh.springboot.mongodb.collection.Student;
+import org.bson.Document;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,5 +18,12 @@ public interface StudentService {
 
     List<Student> getByStudentAge(Integer minAge, Integer maxAge);
 
-    Page<Student> search(String firstName, String lastName, Integer minAge, Integer maxAge, String city, Pageable pageable);
+    Page<Student> search(
+            String firstName, String lastName, Integer minAge,
+            Integer maxAge, String city, Pageable pageable
+    );
+
+    List<Document> getYoungestStudentByCity();
+
+    List<Document> getStudentByCity();
 }
